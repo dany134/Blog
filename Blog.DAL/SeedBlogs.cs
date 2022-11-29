@@ -63,6 +63,7 @@ namespace Blog.DAL
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now
                     };
+                    context.Comments.Add(comment);
                     var comment2 = new Comment
                     {
                         Body = "Second comment on first post",

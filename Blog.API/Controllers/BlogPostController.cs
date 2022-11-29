@@ -58,7 +58,7 @@ namespace Blog.API.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return BadRequest();
             }
 
         }

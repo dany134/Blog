@@ -41,6 +41,11 @@ namespace Blog.Repository
         {
            if(blogPost != null)
             {
+                var existing = _context.BlogPosts.Any(x => x.Slug == blogPost.Slug);
+                if (existing)
+                {
+                    return false;
+                }
                 _context.BlogPosts.Add(blogPost);
                 return await RepositorySave();
             }
