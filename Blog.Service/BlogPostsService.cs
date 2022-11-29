@@ -1,6 +1,7 @@
 ﻿using Blog.Contracts;
 using Blog.Contracts.Services;
 using Blog.DAL.Entities;
+using SQLitePCL;
 
 namespace Blog.Service
 {
@@ -12,9 +13,9 @@ namespace Blog.Service
             _repository = repository;
         }
 
-        public async Task<IEnumerable<BlogPost>> GetBlogPostsAsync()
+        public async Task<IEnumerable<BlogPost>> GetBlogPostsAsync(string tag)
         {
-            return await _repository.GetPostsAsync();
+            return await _repository.GetPostsAsync(tag);
         }
 
         public async Task<bool> InsertBlogPostsAsync(BlogPost post)
@@ -23,9 +24,31 @@ namespace Blog.Service
             return await _repository.InsertPostAsync(post);
         }
 
-        public async Task UpdateBlogPostsAsync(string slug, BlogPost post)
+        public async Task<bool> UpdateBlogPostsAsync(string slug, BlogPost postUpdate)
         {
-            throw new NotImplementedException();
+            var entity = await GetPostBySlugAsync(slug);
+            if(entity != null)
+            {
+                if(!string.IsNullOrWhiteSpace(postUpdate.Title))
+                {
+                    if(entity.Title != postUpdate.Title)
+                    {
+                       entity.Title = postUpdate.Title;
+                       entity.Slug = postUpdate.Title.Trim().ToLower().Replace(" ", "-");
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(postUpdate.Description))
+                {
+                    entity.Description = postUpdate.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(postUpdate.Body))
+                {
+                    entity.Body = postUpdate.Body;
+                }
+                entity.UpdatedAt = DateTime.Now;
+                return await _repository.RepositorySave();
+            }
+            return false;
         }
 
         public async Task<bool> DeleteBlogPostsAsync(string slug)
@@ -34,7 +57,10 @@ namespace Blog.Service
         }
         private void SetDates(BlogPost post)
         {
-            post.CreatedAt = DateTime.Now;
+            if(post.CreatedAt == DateTime.MinValue)
+            {
+               post.CreatedAt = DateTime.Now;
+            }
             post.UpdatedAt = DateTime.Now;
         }
 
@@ -42,6 +68,10 @@ namespace Blog.Service
         {
             var entity = await _repository.GetPostBySlugAsync(slug);
             return entity;
+        }
+        public async Task<IEnumerable<string>> GetTagsAsync()
+        {
+            return await _repository.GetTagsAsync();
         }
     }
 }

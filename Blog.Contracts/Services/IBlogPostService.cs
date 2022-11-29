@@ -9,11 +9,12 @@ namespace Blog.Contracts.Services
 {
     public interface IBlogPostService
     {
-        Task<IEnumerable<BlogPost>> GetBlogPostsAsync();
+        Task<IEnumerable<BlogPost>> GetBlogPostsAsync(string tag);
         Task<bool> InsertBlogPostsAsync(BlogPost post);
-        Task UpdateBlogPostsAsync(string slug,BlogPost post);
+        Task<bool> UpdateBlogPostsAsync(string slug, BlogPost post);
         Task<bool> DeleteBlogPostsAsync(string slug);
         Task<BlogPost> GetPostBySlugAsync(string slug);
+        Task<IEnumerable<string>> GetTagsAsync();
 
 
     }

@@ -22,13 +22,19 @@ namespace Blog.Repository
 
         public async Task<BlogPost> GetPostBySlugAsync(string slug)
         {
-            return await _context.BlogPosts.FindAsync(slug);
+
+            return await _context.BlogPosts.FirstOrDefaultAsync(x => x.Slug == slug);
         }
 
-        public async Task<IEnumerable<BlogPost>> GetPostsAsync() 
+        public async Task<IEnumerable<BlogPost>> GetPostsAsync(string tag) 
         {
-            var posts = await _context.BlogPosts.ToListAsync();
-            return posts;
+            var posts =  _context.BlogPosts.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+                posts = posts.Where(x => x.Tags.ToLower().Contains(tag.ToLower()));
+            }
+            posts = posts.Where(x => x.UpdatedAt >= DateTime.Now.Date.AddDays(-2));
+            return await posts.ToListAsync();
         }
 
         public async Task<bool> InsertPostAsync(BlogPost blogPost)
@@ -42,7 +48,7 @@ namespace Blog.Repository
         }
         public async Task<bool> DeletePostAsync(string slug)
         {
-            var entity = await _context.BlogPosts.FindAsync(slug);
+            var entity = await GetPostBySlugAsync(slug);
             
             if(entity == null)
             {
@@ -55,6 +61,18 @@ namespace Blog.Repository
         {
            var result = await _context.SaveChangesAsync();
             return result > 0 ? true : false;
+        }
+
+        public async Task<List<string>> GetTagsAsync()
+        {
+            var tags = await _context.BlogPosts.Select(x => x.Tags).ToListAsync();
+            var list = new List<string>();
+            foreach (var item in tags)
+            {
+                var split = item.Split(",");
+                list.AddRange(split);
+            }
+            return list;
         }
     }
 }

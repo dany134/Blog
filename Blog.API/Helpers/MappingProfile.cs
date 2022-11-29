@@ -14,6 +14,10 @@ namespace Blog.API.Helpers
                 .ForMember(x => x.Slug, opt => opt.MapFrom(x => x.Title.Contains(" ") ? x.Title.Trim().Replace(" ", "-").ToLower() : x.Title.ToLower().Trim()));
 
             CreateMap<BlogPost, BlogPostDto>().ForMember(x => x.TagList, opt => opt.MapFrom(x => x.Tags.Split(",", StringSplitOptions.None)));
+
+            CreateMap<BlogPostForUpdateDto, BlogPost>();
+            CreateMap<Comment, CommentDto>();
+            CreateMap<CommentForCreationDto, Comment>();
         }
     }
 }

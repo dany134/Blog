@@ -14,5 +14,7 @@ namespace Blog.DAL
         {
         }
         public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
     }
 }

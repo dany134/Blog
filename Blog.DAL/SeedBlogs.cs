@@ -25,6 +25,7 @@ namespace Blog.DAL
                         Body = "The app is simple to use, and will help you decide on your best furniture fit.",
                         Title = "Augmented Reality iOS Application",
                         Description = "Rubicon Software Development and Gazzda furniture are proud to launch an augmented reality app.",
+                        Tags = "tag1,tag2,tag3",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now
                     };

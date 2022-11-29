@@ -23,11 +23,12 @@ namespace Blog.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string? tag)
         {
-            var entites = await _service.GetBlogPostsAsync();
+            var entites = await _service.GetBlogPostsAsync(tag);
             var mapped = _mapper.Map<IEnumerable<BlogPostDto>>(entites);
             return Ok(mapped);
+          
         }
         [HttpGet("{slug}")]
         public async Task<IActionResult> GetPostBySlugAsync(string slug)
@@ -73,6 +74,21 @@ namespace Blog.API.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpPut("{slug}")]
+        public async Task<IActionResult> UpdatePostAsync(string slug, [FromBody]BlogPostForUpdateDto dto)
+        {
+            var mapped = _mapper.Map<BlogPost>(dto);
+            var result = await _service.UpdateBlogPostsAsync(slug, mapped);
+            if (result)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+           
         }
     }
 }
