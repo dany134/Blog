@@ -27,7 +27,7 @@ namespace Blog.API.Controllers
         {
             var entites = await _service.GetBlogPostsAsync(tag);
             var mapped = _mapper.Map<IEnumerable<BlogPostDto>>(entites);
-            return Ok(mapped);
+            return Ok(PostResponse<IEnumerable<BlogPostDto>>.Create(mapped, mapped.Count()));
           
         }
         [HttpGet("{slug}")]
