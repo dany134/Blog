@@ -12,7 +12,9 @@ namespace Blog.Contracts.Services
         Task<IEnumerable<BlogPost>> GetBlogPostsAsync();
         Task<bool> InsertBlogPostsAsync(BlogPost post);
         Task UpdateBlogPostsAsync(string slug,BlogPost post);
-        Task DeleteBlogPostsAsync(string slug);
+        Task<bool> DeleteBlogPostsAsync(string slug);
+        Task<BlogPost> GetPostBySlugAsync(string slug);
+
 
     }
 }

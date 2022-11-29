@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gPG4DqXcL6CEVTDIrN+J7BfZ3lTksR1hiPjrX8JcoB6Ffy4NMZHCX66lHRR7H/Sk2HaQnmEguwKp5MCBa2LyTw==",
+  "dgSpecHash": "ecVt/MBkiASLoGrdrbibE6qh+TtI3mhpgdP13q1JnrwsO5+gVNQuBsnJbNfu4fH9SKSYeLlYrQebEZJMDgU1Eg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj",
+  "projectFilePath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Daniel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.11\\microsoft.data.sqlite.core.6.0.11.nupkg.sha512",

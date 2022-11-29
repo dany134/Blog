@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.API\\Blog.API.csproj": {}
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\Blog.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.API\\Blog.API.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\Blog.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.API\\Blog.API.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\Blog.API.csproj",
         "projectName": "Blog.API",
-        "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.API\\Blog.API.csproj",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\Blog.API.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.API\\obj\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,17 +33,17 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
               },
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj"
               },
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\Blog.Repository.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\Blog.Repository.csproj"
               },
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\Blog.Service.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\Blog.Service.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\Blog.Service.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\Blog.Service.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
         "projectName": "Blog.Contracts",
-        "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\obj\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -125,8 +125,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj"
               }
             }
           }
@@ -160,14 +160,14 @@
         }
       }
     },
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj",
         "projectName": "Blog.DAL",
-        "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\obj\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -238,14 +238,14 @@
         }
       }
     },
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\Blog.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\Blog.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\Blog.Repository.csproj",
         "projectName": "Blog.Repository",
-        "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\Blog.Repository.csproj",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\Blog.Repository.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Repository\\obj\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -267,11 +267,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
               },
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj"
               }
             }
           }
@@ -305,14 +305,14 @@
         }
       }
     },
-    "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\Blog.Service.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\Blog.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\Blog.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\Blog.Service.csproj",
         "projectName": "Blog.Service",
-        "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\Blog.Service.csproj",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\Blog.Service.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Service\\obj\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -334,11 +334,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj"
               },
-              "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.DAL\\Blog.DAL.csproj"
+              "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.DAL\\Blog.DAL.csproj"
               }
             }
           }

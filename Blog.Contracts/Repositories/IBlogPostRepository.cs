@@ -11,5 +11,7 @@ namespace Blog.Contracts
     {
         Task<IEnumerable<BlogPost>> GetPostsAsync();
         Task<bool> InsertPostAsync(BlogPost blogPost);
+        Task<BlogPost> GetPostBySlugAsync(string slug);
+        Task<bool> DeletePostAsync(string slug);
     }
 }

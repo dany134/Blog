@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EBP24iMI9YrGlbh3EKHmOF4Y1XEAUhqN8CobpRx79vSMzEFb0QUzpn/xBS3EltL/N+lvxM3XqsoVomRCf/R6/g==",
+  "dgSpecHash": "vrmwxZX+mQlWkiS7kvKXE+zGYVroKdiqZL8vR2ybEM4ubAcLf8dk/HSKOSv9F70bDViPzKCsCzfqkhfUn3l9fA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Daniel\\source\\repos\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
+  "projectFilePath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.Contracts\\Blog.Contracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.11\\microsoft.data.sqlite.core.6.0.11.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.11\\microsoft.entityframeworkcore.6.0.11.nupkg.sha512",

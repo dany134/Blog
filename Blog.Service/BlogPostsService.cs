@@ -28,14 +28,20 @@ namespace Blog.Service
             throw new NotImplementedException();
         }
 
-        public async Task DeleteBlogPostsAsync(string slug)
+        public async Task<bool> DeleteBlogPostsAsync(string slug)
         {
-            throw new NotImplementedException();
+            return await _repository.DeletePostAsync(slug);
         }
         private void SetDates(BlogPost post)
         {
             post.CreatedAt = DateTime.Now;
             post.UpdatedAt = DateTime.Now;
+        }
+
+        public async Task<BlogPost> GetPostBySlugAsync(string slug)
+        {
+            var entity = await _repository.GetPostBySlugAsync(slug);
+            return entity;
         }
     }
 }

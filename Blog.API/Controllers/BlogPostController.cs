@@ -23,9 +23,22 @@ namespace Blog.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<BlogPost>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _service.GetBlogPostsAsync();
+            var entites = await _service.GetBlogPostsAsync();
+            var mapped = _mapper.Map<IEnumerable<BlogPostDto>>(entites);
+            return Ok(mapped);
+        }
+        [HttpGet("{slug}")]
+        public async Task<IActionResult> GetPostBySlugAsync(string slug)
+        {
+            var entity = await _service.GetPostBySlugAsync(slug);
+            if(entity != null)
+            {
+                var dto = _mapper.Map<BlogPostDto>(entity);
+                return Ok(dto);
+            }
+            return NotFound();
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]BlogPostForCreationDto blogPost) 
@@ -47,6 +60,19 @@ namespace Blog.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
+        }
+        [HttpDelete("{slug}")]
+        public async Task<IActionResult> DeletePostBySlugAsync(string slug)
+        {
+            var result = await _service.DeleteBlogPostsAsync(slug);
+            if (result)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
