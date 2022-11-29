@@ -78,6 +78,7 @@ namespace Blog.API.Controllers
         [HttpPut("{slug}")]
         public async Task<IActionResult> UpdatePostAsync(string slug, [FromBody]BlogPostForUpdateDto dto)
         {
+
             var mapped = _mapper.Map<BlogPost>(dto);
             var result = await _service.UpdateBlogPostsAsync(slug, mapped);
             if (result)

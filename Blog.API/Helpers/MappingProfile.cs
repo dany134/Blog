@@ -10,12 +10,12 @@ namespace Blog.API.Helpers
         public MappingProfile()
         {
             CreateMap<BlogPostForCreationDto, BlogPost>()
-                .ForMember(x => x.Tags, opt => opt.MapFrom(x => x.TagList != null && x.TagList.Any() ? string.Join(",", x.TagList) : null))
+                .ForMember(x => x.Tags, opt => opt.MapFrom(x => x.TagList != null && x.TagList.Any() ? string.Join(",", x.TagList) : ""))
                 .ForMember(x => x.Slug, opt => opt.MapFrom(x => x.Title.Contains(" ") ? x.Title.Trim().Replace(" ", "-").ToLower() : x.Title.ToLower().Trim()));
 
             CreateMap<BlogPost, BlogPostDto>().ForMember(x => x.TagList, opt => opt.MapFrom(x => x.Tags.Split(",", StringSplitOptions.None)));
 
-            CreateMap<BlogPostForUpdateDto, BlogPost>();
+            CreateMap<BlogPostForUpdateDto, BlogPost>().ForMember(x => x.Tags, opt => opt.MapFrom(x => x.TagList != null && x.TagList.Any() ? string.Join(",", x.TagList) : ""));
             CreateMap<Comment, CommentDto>();
             CreateMap<CommentForCreationDto, Comment>();
         }
