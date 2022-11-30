@@ -54,7 +54,10 @@ namespace Blog.Repository
             {
                 return false;
             }
+            var comments = _context.Comments.Where(x => x.Slug == slug);
             _context.BlogPosts.Remove(entity);
+            _context.Comments.RemoveRange(comments);
+
             return await RepositorySave();
         }
         public async Task<bool> RepositorySave()
