@@ -1,6 +1,7 @@
 ﻿using Blog.Contracts;
 using Blog.Contracts.Services;
 using Blog.DAL.Entities;
+using Blog.Service.Common;
 using SQLitePCL;
 
 namespace Blog.Service
@@ -34,7 +35,7 @@ namespace Blog.Service
                     if(entity.Title != postUpdate.Title)
                     {
                        entity.Title = postUpdate.Title;
-                       entity.Slug = postUpdate.Title.Trim().ToLower().Replace(" ", "-");
+                        entity.Slug = SlugGenerator.ToUrlSlug(postUpdate.Title);
                     }
                 }
                 if (!string.IsNullOrWhiteSpace(postUpdate.Description))
@@ -44,10 +45,6 @@ namespace Blog.Service
                 if (!string.IsNullOrWhiteSpace(postUpdate.Body))
                 {
                     entity.Body = postUpdate.Body;
-                }
-                if (!string.IsNullOrWhiteSpace(postUpdate.Tags)) 
-                {
-                    entity.Tags = postUpdate.Tags;
                 }
                 entity.UpdatedAt = DateTime.Now;
                 return await _repository.RepositorySave();

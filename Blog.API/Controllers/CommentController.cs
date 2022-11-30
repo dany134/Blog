@@ -47,10 +47,10 @@ namespace Blog.API.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteCommentAsync(string slug) 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCommentAsync(string slug, int id) 
         {
-            var result = await _service.DeleteCommentAsync(slug);
+            var result = await _service.DeleteCommentAsync(slug, id);
             if (result) 
             {
                 return NoContent();

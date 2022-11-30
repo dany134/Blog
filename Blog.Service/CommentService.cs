@@ -16,9 +16,9 @@ namespace Blog.Service
         {
             _repository= repository;
         }
-        public async Task<bool> DeleteCommentAsync(string slug)
+        public async Task<bool> DeleteCommentAsync(string slug, int Id)
         {
-            return await _repository.DeleteBySlugAsyn(slug);
+            return await _repository.DeleteByIdAsync(slug, Id);
         }
 
         public async Task<IEnumerable<Comment>> GetCommentsAsync(string slug)

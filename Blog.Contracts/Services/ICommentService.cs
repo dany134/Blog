@@ -11,6 +11,6 @@ namespace Blog.Contracts.Services
     {
         Task<IEnumerable<Comment>> GetCommentsAsync(string slug);
         Task<bool> InsertCommentAsync(Comment comment);
-        Task<bool> DeleteCommentAsync(string slug);  
+        Task<bool> DeleteCommentAsync(string slug, int Id);  
     }
 }

@@ -2,6 +2,7 @@
 using Blog.DAL;
 using Blog.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +38,12 @@ namespace Blog.Repository
             var result = await context.SaveChangesAsync();
             return result > 0 ? true : false;
         }
-        public async Task<bool> DeleteBySlugAsyn(string slug)
+        public async Task<bool> DeleteByIdAsync(string slug, int Id)
         {
-            if (!string.IsNullOrWhiteSpace(slug))
+            var entity = await context.Comments.FirstAsync(x => x.Id == Id && x.Slug == slug);
+            if(entity != null)
             {
-                var entites = context.Comments.Where(x => x.Slug == slug);
-                context.Comments.RemoveRange(entites);
+                context.Comments.Remove(entity);
                 return await RepositorySave();
             }
             return false;

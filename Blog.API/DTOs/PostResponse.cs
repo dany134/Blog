@@ -4,12 +4,12 @@
     {
         public PostResponse(T data, int count)
         {
-            Data = data;
-            Count = count;
+            BlogPosts = data;
+            PostCount = count;
         }
     
-        public T Data { get; set; }
-        public int Count { get; set; }
+        public T BlogPosts { get; set; }
+        public int PostCount { get; set; }
 
         public static PostResponse<T> Create(T data, int count) 
         {

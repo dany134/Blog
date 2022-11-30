@@ -33,19 +33,14 @@ namespace Blog.Repository
             {
                 posts = posts.Where(x => x.Tags.ToLower().Contains(tag.ToLower()));
             }
-            posts = posts.Where(x => x.UpdatedAt >= DateTime.Now.Date.AddDays(-2));
-            return await posts.ToListAsync();
+            
+            return await posts.OrderByDescending(x => x.UpdatedAt).ToListAsync();
         }
 
         public async Task<bool> InsertPostAsync(BlogPost blogPost)
         {
            if(blogPost != null)
-            {
-                var existing = _context.BlogPosts.Any(x => x.Slug == blogPost.Slug);
-                if (existing)
-                {
-                    return false;
-                }
+            {              
                 _context.BlogPosts.Add(blogPost);
                 return await RepositorySave();
             }

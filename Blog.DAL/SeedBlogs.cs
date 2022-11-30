@@ -36,7 +36,7 @@ namespace Blog.DAL
                         Body = "Test Slug 1",
                         Title = "This is a test title ",
                         Description = "Description.",
-                        Tags = "A1, A2, A3",
+                        Tags = "A1,A2,A3",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now
                     };
@@ -47,7 +47,7 @@ namespace Blog.DAL
                         Body = "This is a second test body for seeding.",
                         Title = "Test Slug 2",
                         Description = "Second description.",
-                        Tags = "B1, B2, B3",
+                        Tags = "B1,B2,B3",
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now
                     };

@@ -48,8 +48,14 @@ namespace Blog.API.Controllers
             {
                 return BadRequest();
             }     
-             var post = _mapper.Map<BlogPost>(blogPost);
             
+             var post = _mapper.Map<BlogPost>(blogPost);
+            var resource = await _service.GetPostBySlugAsync(post.Slug);
+            if(resource != null)
+            {
+                ModelState.AddModelError("Exists", $"The post with the slug {post.Slug} already exists!");
+                return BadRequest(ModelState);
+            }            
             var result = await _service.InsertBlogPostsAsync(post);
             if(result == true)
             {
