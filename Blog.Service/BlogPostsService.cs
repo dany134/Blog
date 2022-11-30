@@ -34,8 +34,8 @@ namespace Blog.Service
                 {
                     if(entity.Title != postUpdate.Title)
                     {
-                       entity.Title = postUpdate.Title;
-                        entity.Slug = SlugGenerator.ToUrlSlug(postUpdate.Title);
+                       entity.Title = postUpdate.Title.Trim();
+                       entity.Slug = SlugGenerator.ToUrlSlug(postUpdate.Title);
                     }
                 }
                 if (!string.IsNullOrWhiteSpace(postUpdate.Description))

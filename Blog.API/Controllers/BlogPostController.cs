@@ -4,9 +4,11 @@ using Blog.Contracts;
 using Blog.Contracts.Services;
 using Blog.DAL;
 using Blog.DAL.Entities;
+using Blog.Service.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace Blog.API.Controllers
 {
@@ -84,7 +86,17 @@ namespace Blog.API.Controllers
         [HttpPut("{slug}")]
         public async Task<IActionResult> UpdatePostAsync(string slug, [FromBody]BlogPostForUpdateDto dto)
         {
-
+            if (!string.IsNullOrWhiteSpace(dto.Title))
+            {
+                var newSlug = SlugGenerator.ToUrlSlug(dto.Title);
+                var exists = _service.GetPostBySlugAsync(newSlug) != null;
+                if (exists)
+                {
+                    ModelState.AddModelError("Exists", $"The post with the slug {newSlug} already exists!");
+                    return BadRequest(ModelState);
+                }
+            }
+            
             var mapped = _mapper.Map<BlogPost>(dto);
             var result = await _service.UpdateBlogPostsAsync(slug, mapped);
             if (result)
