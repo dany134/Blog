@@ -19,12 +19,11 @@ namespace Blog.API.Controllers
     [ApiController]
     public class BlogPostController : ControllerBase
     {
-        private readonly IBlogPostService _service;
+      
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        public BlogPostController(IBlogPostService service, IMapper mapper, IMediator mediator)
-        {
-            _service = service;
+        public BlogPostController(IMapper mapper, IMediator mediator)
+        {          
             _mapper = mapper;
             _mediator = mediator;
         }

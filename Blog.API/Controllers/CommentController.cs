@@ -14,13 +14,12 @@ namespace Blog.API.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private readonly ICommentService _service;
+       
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public CommentController(ICommentService service, IMapper mapper, IMediator mediator)
+        public CommentController(IMapper mapper, IMediator mediator)
         {
-            _service = service;
             _mapper = mapper;
             _mediator = mediator;
         }
