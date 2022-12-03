@@ -138,3 +138,6 @@ C:\Users\Daniel\Desktop\Project\Blog\Blog.API\obj\Debug\net6.0\refint\Blog.API.d
 C:\Users\Daniel\Desktop\Project\Blog\Blog.API\obj\Debug\net6.0\Blog.API.pdb
 C:\Users\Daniel\Desktop\Project\Blog\Blog.API\obj\Debug\net6.0\Blog.API.genruntimeconfig.cache
 C:\Users\Daniel\Desktop\Project\Blog\Blog.API\obj\Debug\net6.0\ref\Blog.API.dll
+C:\Users\Daniel\Desktop\Project\Blog\Blog.API\bin\Debug\net6.0\MediatR.dll
+C:\Users\Daniel\Desktop\Project\Blog\Blog.API\bin\Debug\net6.0\MediatR.Contracts.dll
+C:\Users\Daniel\Desktop\Project\Blog\Blog.API\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll

@@ -1,4 +1,6 @@
 ﻿using Blog.Contracts.Services;
+using Blog.Service.Tags.Query;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,16 +10,16 @@ namespace Blog.API.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        private readonly IBlogPostService _service;
+        private readonly IMediator _mediator;
 
-        public TagsController(IBlogPostService service)
+        public TagsController(IMediator mediator)
         {
-            _service = service;
+            _mediator = mediator;
         }
         [HttpGet]
         public async Task<IActionResult> GetTagsAsync()
         {
-            return Ok(await _service.GetTagsAsync());
+            return Ok(await _mediator.Send(new QueryAllTags.Query()));
         }
     }
 }

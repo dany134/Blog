@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "ghMv4LOGuoduD9ExM2YmG8ElMA2UqMnVOLN02AYCIfQf8mYYcjPEpxMoudZhkt5Ftq8B1o2Ty2UA7YDqOamItQ==",
+  "dgSpecHash": "CwSpCkg0swVUTytDCTfMn3Ut//5Qsp4fiIScWe8Eq8dbibQJo8GdGu1ct9qR/14rLLLdWADTTbwu4LH/35aF4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel\\Desktop\\Project\\Blog\\Blog.API\\Blog.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Daniel\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.11\\microsoft.data.sqlite.core.6.0.11.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.11\\microsoft.entityframeworkcore.6.0.11.nupkg.sha512",

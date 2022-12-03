@@ -5,10 +5,13 @@ using Blog.Contracts.Services;
 using Blog.DAL;
 using Blog.DAL.Entities;
 using Blog.Service.Common;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Blog.Service.Posts.Query;
+using Blog.Service.Posts.Command;
 
 namespace Blog.API.Controllers
 {
@@ -18,16 +21,18 @@ namespace Blog.API.Controllers
     {
         private readonly IBlogPostService _service;
         private readonly IMapper _mapper;
-        public BlogPostController(IBlogPostService service, IMapper mapper)
+        private readonly IMediator _mediator;
+        public BlogPostController(IBlogPostService service, IMapper mapper, IMediator mediator)
         {
             _service = service;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(string? tag)
         {
-            var entites = await _service.GetBlogPostsAsync(tag);
+            var entites = await _mediator.Send(new QueryAllPosts.Query { Tag = tag });
             var mapped = _mapper.Map<IEnumerable<BlogPostDto>>(entites);
             return Ok(PostResponse<IEnumerable<BlogPostDto>>.Create(mapped, mapped.Count()));
           
@@ -35,7 +40,7 @@ namespace Blog.API.Controllers
         [HttpGet("{slug}")]
         public async Task<IActionResult> GetPostBySlugAsync(string slug)
         {
-            var entity = await _service.GetPostBySlugAsync(slug);
+            var entity = await _mediator.Send(new QueryPostsBySlug.Query { Slug = slug});
             if(entity != null)
             {
                 var dto = _mapper.Map<BlogPostDto>(entity);
@@ -52,14 +57,14 @@ namespace Blog.API.Controllers
             }     
             
              var post = _mapper.Map<BlogPost>(blogPost);
-            var resource = await _service.GetPostBySlugAsync(post.Slug);
+            var resource = await _mediator.Send(new QueryPostsBySlug.Query { Slug = post.Slug });
             if(resource != null)
             {
                 ModelState.AddModelError("Exists", $"The post with the slug {post.Slug} already exists!");
                 return BadRequest(ModelState);
-            }            
-            var result = await _service.InsertBlogPostsAsync(post);
-            if(result == true)
+            }
+            var result = await _mediator.Send(new CreatePost.Command { BlogPost = post });
+            if(result.IsSuccess == true)
             {
                 return StatusCode(StatusCodes.Status201Created);
 
@@ -73,8 +78,8 @@ namespace Blog.API.Controllers
         [HttpDelete("{slug}")]
         public async Task<IActionResult> DeletePostBySlugAsync(string slug)
         {
-            var result = await _service.DeleteBlogPostsAsync(slug);
-            if (result)
+            var result = await _mediator.Send(new DeletePost.Command { Slug = slug });
+            if (result.IsSuccess)
             {
                 return NoContent();
             }
@@ -89,7 +94,7 @@ namespace Blog.API.Controllers
             if (!string.IsNullOrWhiteSpace(dto.Title))
             {
                 var newSlug = SlugGenerator.ToUrlSlug(dto.Title);
-                var exists = _service.GetPostBySlugAsync(newSlug) != null;
+                var exists = await _mediator.Send(new QueryPostsBySlug.Query { Slug = newSlug }) != null;
                 if (exists)
                 {
                     ModelState.AddModelError("Exists", $"The post with the slug {newSlug} already exists!");
@@ -98,8 +103,8 @@ namespace Blog.API.Controllers
             }
             
             var mapped = _mapper.Map<BlogPost>(dto);
-            var result = await _service.UpdateBlogPostsAsync(slug, mapped);
-            if (result)
+            var result = await _mediator.Send(new UpdatePost.Command { Slug = slug, Post = mapped });
+            if (result.IsSuccess)
             {
                 return NoContent();
             }

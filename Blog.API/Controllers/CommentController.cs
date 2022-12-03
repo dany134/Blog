@@ -2,6 +2,9 @@
 using Blog.API.DTOs;
 using Blog.Contracts.Services;
 using Blog.DAL.Entities;
+using Blog.Service.Comments.Command;
+using Blog.Service.Comments.Query;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +16,18 @@ namespace Blog.API.Controllers
     {
         private readonly ICommentService _service;
         private readonly IMapper _mapper;
-        public CommentController(ICommentService service, IMapper mapper)
+        private readonly IMediator _mediator;
+
+        public CommentController(ICommentService service, IMapper mapper, IMediator mediator)
         {
             _service = service;
             _mapper = mapper;
+            _mediator = mediator;
         }
         [HttpGet]
         public async Task<IActionResult> GetCommentAsync(string slug)
         {
-            var comments = await _service.GetCommentsAsync(slug);
+            var comments = await _mediator.Send(new QueryCommentsBySlug.Query { Slug = slug });
             if(comments != null && comments.Any())
             {
                 return Ok(_mapper.Map<IEnumerable<CommentDto>>(comments));
@@ -37,8 +43,8 @@ namespace Blog.API.Controllers
         {
             var entity = _mapper.Map<Comment>(dto);
             entity.Slug = slug;
-            var result = await _service.InsertCommentAsync(entity);
-            if (result)
+            var result = await _mediator.Send(new CreateComment.Command { Comment = entity });
+            if (result.IsSuccess)
             {
                 return StatusCode(StatusCodes.Status201Created);
             }
@@ -50,8 +56,8 @@ namespace Blog.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCommentAsync(string slug, int id) 
         {
-            var result = await _service.DeleteCommentAsync(slug, id);
-            if (result) 
+            var result = await _mediator.Send(new DeleteComment.Command { Id = id, Slug = slug });
+            if (result.IsSuccess) 
             {
                 return NoContent();
             }

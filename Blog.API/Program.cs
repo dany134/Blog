@@ -5,8 +5,11 @@ using Blog.Contracts.Services;
 using Blog.DAL;
 using Blog.Repository;
 using Blog.Service;
+using Blog.Service.Posts.Query;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +29,7 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
-
+builder.Services.AddMediatR(typeof(QueryAllPosts.Handler).Assembly);
 
 
 var app = builder.Build();
