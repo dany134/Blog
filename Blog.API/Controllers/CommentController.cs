@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Blog.API.DTOs;
-using Blog.Contracts.Services;
 using Blog.DAL.Entities;
 using Blog.Service.Comments.Command;
 using Blog.Service.Comments.Query;

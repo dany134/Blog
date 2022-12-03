@@ -1,26 +1,23 @@
 using Blog.Contracts;
-using Blog.Contracts.Services;
 using Moq;
 using System.Net.NetworkInformation;
 using System;
 using Blog.DAL.Entities;
 using FluentAssertions;
+using Blog.Service.Posts.Query;
+using Blog.Service.Posts.Command;
 
 namespace Blog.Service.Tests
 {
     public class BlogPostTests
     {
-        private BlogPostsService _service;
+       
         private readonly Mock<IBlogPostRepository> _RepoMock = new Mock<IBlogPostRepository>();
 
-        public BlogPostTests()
-        {
-            _service = new BlogPostsService(_RepoMock.Object);
-        }
         [Fact]
         public async Task Posts_ShouldReturnList()
         {
-            
+            var handler = new QueryAllPosts.Handler(_RepoMock.Object);
             //Arrange
             var posts = new List<BlogPost>
             {
@@ -35,7 +32,8 @@ namespace Blog.Service.Tests
 
             _RepoMock.Setup(x => x.GetPostsAsync(tag)).Returns(Task.FromResult(posts));
             //Act
-            var result = await _service.GetBlogPostsAsync(tag);
+            var request = new QueryAllPosts.Query { Tag = tag };
+            var result = await handler.Handle(request, CancellationToken.None);
             //Assert
 
             result.Should().BeEquivalentTo(posts);
@@ -47,11 +45,12 @@ namespace Blog.Service.Tests
             //Arrange
             var posts = new List<BlogPost>().AsEnumerable();
             string tag = "";
-
+            var handler = new QueryAllPosts.Handler(_RepoMock.Object);
+            var request = new QueryAllPosts.Query { Tag = tag };
 
             _RepoMock.Setup(x => x.GetPostsAsync(tag)).Returns(Task.FromResult(posts));
             //Act
-            var result = await _service.GetBlogPostsAsync(tag);
+            var result = await handler.Handle(request, CancellationToken.None);
 
             //Assert
             result.Should().BeEmpty();
@@ -59,7 +58,9 @@ namespace Blog.Service.Tests
         [Fact]
         public async Task Post_ShouldGetbyId()
         {
+
             //Arrange
+            var handler = new QueryPostsBySlug.Handler(_RepoMock.Object);
             var slug = "test-slug";
             var post = new BlogPost()
             {
@@ -74,9 +75,9 @@ namespace Blog.Service.Tests
             };
 
             _RepoMock.Setup(x => x.GetPostBySlugAsync(slug)).ReturnsAsync(post);
-
+            var request = new QueryPostsBySlug.Query { Slug = slug };
             //Act
-            BlogPost result = await _service.GetPostBySlugAsync(slug);
+            BlogPost result = await handler.Handle(request, CancellationToken.None);
 
             //Assert
             result.Slug.Should().Be(slug);
@@ -85,15 +86,17 @@ namespace Blog.Service.Tests
         public async Task Post_ShouldBeDeleted()
         {
             //Arrange
+            var handler = new DeletePost.Handler(_RepoMock.Object);
             var slug = "test-slug";
+            var request = new DeletePost.Command { Slug = slug };
 
             _RepoMock.Setup(x => x.DeletePostAsync(slug)).ReturnsAsync(true);
 
             //Act
-            var result = await _service.DeleteBlogPostsAsync(slug);
+            var result = await handler.Handle(request, CancellationToken.None);
 
             //Assert
-            result.Should().BeTrue();
+            result.IsSuccess.Should().BeTrue();
         }
         [Fact]
         public async Task Post_ShouldBeCreated()
@@ -110,14 +113,16 @@ namespace Blog.Service.Tests
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };
+            var request = new CreatePost.Command { BlogPost = post };
+            var handler = new CreatePost.Handler(_RepoMock.Object);
 
             _RepoMock.Setup(x => x.InsertPostAsync(post)).ReturnsAsync(true);
 
             //Act
-            var result = await _service.InsertBlogPostsAsync(post);
+            var result = await handler.Handle(request, CancellationToken.None);
 
             //Assert
-            result.Should().BeTrue();
+            result.IsSuccess.Should().BeTrue();
         }
     }
 }

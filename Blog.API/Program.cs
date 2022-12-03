@@ -1,7 +1,6 @@
 using Blog.API.Helpers;
 using Blog.Contracts;
 using Blog.Contracts.Repositories;
-using Blog.Contracts.Services;
 using Blog.DAL;
 using Blog.Repository;
 using Blog.Service;
@@ -24,8 +23,6 @@ var config = builder.Configuration;
 builder.Services.AddDbContext<BlogContext>(x => x.UseSqlite(config.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Blog.API")));
 
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-builder.Services.AddScoped<IBlogPostService, BlogPostsService>();
-builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);

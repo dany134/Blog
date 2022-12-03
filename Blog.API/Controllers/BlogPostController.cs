@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Blog.API.DTOs;
 using Blog.Contracts;
-using Blog.Contracts.Services;
 using Blog.DAL;
 using Blog.DAL.Entities;
 using Blog.Service.Common;

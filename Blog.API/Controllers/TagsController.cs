@@ -1,5 +1,4 @@
-﻿using Blog.Contracts.Services;
-using Blog.Service.Tags.Query;
+﻿using Blog.Service.Tags.Query;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
