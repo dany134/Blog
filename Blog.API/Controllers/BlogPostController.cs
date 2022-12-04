@@ -68,8 +68,7 @@ namespace Blog.API.Controllers
             var result = await _service.InsertBlogPostsAsync(post);
             if(result == true)
             {
-                return CreatedAtAction(nameof(GetPostBySlugAsync), new { slug = post.Slug }, post);
-
+                return CreatedAtAction(nameof(GetPostBySlugAsync), new { slug = post.Slug }, _mapper.Map<BlogPostDto>(post));
             }
             else
             {
