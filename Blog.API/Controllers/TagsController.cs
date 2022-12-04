@@ -16,6 +16,7 @@ namespace Blog.API.Controllers
             _mediator = mediator;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTagsAsync()
         {
             return Ok(await _mediator.Send(new QueryAllTags.Query()));

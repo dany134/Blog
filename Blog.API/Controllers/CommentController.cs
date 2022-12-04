@@ -6,6 +6,7 @@ using Blog.Service.Comments.Query;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Blog.API.Controllers
 {
@@ -23,6 +24,8 @@ namespace Blog.API.Controllers
             _mediator = mediator;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCommentAsync(string slug)
         {
             var comments = await _mediator.Send(new QueryCommentsBySlug.Query { Slug = slug });
@@ -37,6 +40,9 @@ namespace Blog.API.Controllers
             }
         }
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> InsertComment(string slug,[FromBody] CommentForCreationDto dto) 
         {
             var entity = _mapper.Map<Comment>(dto);
@@ -44,7 +50,7 @@ namespace Blog.API.Controllers
             var result = await _mediator.Send(new CreateComment.Command { Comment = entity });
             if (result.IsSuccess)
             {
-                return StatusCode(StatusCodes.Status201Created);
+                return Created($"{entity.Slug}/comments/{entity.Id}", entity);
             }
             else 
             {
@@ -52,6 +58,8 @@ namespace Blog.API.Controllers
             }
         }
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCommentAsync(string slug, int id) 
         {
             var result = await _mediator.Send(new DeleteComment.Command { Id = id, Slug = slug });

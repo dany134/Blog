@@ -27,6 +27,9 @@ namespace Blog.Service.Comments.Command
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                request.Comment.CreatedAt = DateTime.Now;
+                request.Comment.UpdatedAt = DateTime.Now;
+
                 var result = await _repository.InsertComment(request.Comment);
                 if (!result)
                 {
