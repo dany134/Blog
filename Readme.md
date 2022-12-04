@@ -9,4 +9,6 @@
 #### EntityFramework should create the DB on start and seed it with some init data.
 ##### If the line 38 in Program.cs file causes problems you can remove it, 
 ##### it is used to automatically run EF core migrations.
+###### On the CQRS branch I have used the CQRS pattern with MediatR
+###### on the master branch I have used the repository/service pattern.
 
