@@ -5,6 +5,7 @@ using Blog.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using System.Xml.Linq;
 
 namespace Blog.API.Controllers
 {
@@ -29,7 +30,6 @@ namespace Blog.API.Controllers
             if(comments != null && comments.Any())
             {
                 return Ok(_mapper.Map<IEnumerable<CommentDto>>(comments));
-
             }
             else
             {
@@ -47,7 +47,7 @@ namespace Blog.API.Controllers
             var result = await _service.InsertCommentAsync(entity);
             if (result)
             {
-                return Created($"posts/{entity.Slug}/comments/{entity.Id}", entity);
+                return Created($"posts/{entity.Slug}/comments/{entity.Id}", _mapper.Map<CommentDto>(entity));
             }
             else 
             {
