@@ -4,6 +4,7 @@ using Blog.Contracts.Services;
 using Blog.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Blog.API.Controllers
 {
@@ -19,6 +20,9 @@ namespace Blog.API.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCommentAsync(string slug)
         {
             var comments = await _service.GetCommentsAsync(slug);
@@ -33,14 +37,17 @@ namespace Blog.API.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> InsertComment(string slug,[FromBody] CommentForCreationDto dto) 
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> InsertComment(string slug, [FromBody] CommentForCreationDto dto) 
         {
             var entity = _mapper.Map<Comment>(dto);
             entity.Slug = slug;
             var result = await _service.InsertCommentAsync(entity);
             if (result)
             {
-                return StatusCode(StatusCodes.Status201Created);
+                return Created($"posts/{entity.Slug}/comments/{entity.Id}", entity);
             }
             else 
             {
@@ -48,6 +55,8 @@ namespace Blog.API.Controllers
             }
         }
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCommentAsync(string slug, int id) 
         {
             var result = await _service.DeleteCommentAsync(slug, id);

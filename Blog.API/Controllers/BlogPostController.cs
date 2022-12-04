@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using System.Net.Mime;
 
 namespace Blog.API.Controllers
 {
@@ -25,6 +26,7 @@ namespace Blog.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(string? tag)
         {
             var entites = await _service.GetBlogPostsAsync(tag);
@@ -32,7 +34,9 @@ namespace Blog.API.Controllers
             return Ok(PostResponse<IEnumerable<BlogPostDto>>.Create(mapped, mapped.Count()));
           
         }
-        [HttpGet("{slug}")]
+        [HttpGet("{slug}"), ActionName(nameof(GetPostBySlugAsync))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetPostBySlugAsync(string slug)
         {
             var entity = await _service.GetPostBySlugAsync(slug);
@@ -44,6 +48,9 @@ namespace Blog.API.Controllers
             return NotFound();
         }
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody]BlogPostForCreationDto blogPost) 
         {
             if(blogPost == null)
@@ -61,7 +68,7 @@ namespace Blog.API.Controllers
             var result = await _service.InsertBlogPostsAsync(post);
             if(result == true)
             {
-                return StatusCode(StatusCodes.Status201Created);
+                return CreatedAtAction(nameof(GetPostBySlugAsync), new { slug = post.Slug }, post);
 
             }
             else
@@ -71,6 +78,8 @@ namespace Blog.API.Controllers
 
         }
         [HttpDelete("{slug}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeletePostBySlugAsync(string slug)
         {
             var result = await _service.DeleteBlogPostsAsync(slug);
@@ -84,6 +93,8 @@ namespace Blog.API.Controllers
             }
         }
         [HttpPut("{slug}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdatePostAsync(string slug, [FromBody]BlogPostForUpdateDto dto)
         {
             if (!string.IsNullOrWhiteSpace(dto.Title))
