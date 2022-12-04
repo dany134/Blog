@@ -71,7 +71,7 @@ namespace Blog.API.Controllers
             var result = await _mediator.Send(new CreatePost.Command { BlogPost = post });
             if(result.IsSuccess == true)
             {
-                return CreatedAtAction(nameof(GetPostBySlugAsync), new { slug = post.Slug }, post);
+                return CreatedAtAction(nameof(GetPostBySlugAsync), new { slug = post.Slug }, _mapper.Map<BlogPostDto>(post));
             }
             else
             {

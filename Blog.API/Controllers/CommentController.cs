@@ -50,7 +50,7 @@ namespace Blog.API.Controllers
             var result = await _mediator.Send(new CreateComment.Command { Comment = entity });
             if (result.IsSuccess)
             {
-                return Created($"{entity.Slug}/comments/{entity.Id}", entity);
+                return Created($"{entity.Slug}/comments/{entity.Id}", _mapper.Map<CommentDto>(entity));
             }
             else 
             {
