@@ -68,7 +68,7 @@ namespace Blog.Repository
 
         public async Task<List<string>> GetTagsAsync()
         {
-            var tags = await _context.BlogPosts.Select(x => x.Tags).Distinct().ToListAsync();
+            var tags = await _context.BlogPosts.Where(x => !string.IsNullOrWhiteSpace(x.Tags)).Select(x => x.Tags).Distinct().ToListAsync();
             var list = new List<string>();
             foreach (var item in tags)
             {
